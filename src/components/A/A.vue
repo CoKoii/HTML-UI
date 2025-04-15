@@ -5,10 +5,14 @@ const props = withDefaults(defineProps<AProps>(), {
   type: 'link',
   href: '#',
 })
+defineOptions({
+  name: 'A_',
+})
 const handleClick = (e: MouseEvent) => {
   if (props.disabled) {
     e.preventDefault()
-    e.stopPropagation()
+    e.stopImmediatePropagation()
+    return
   }
 }
 </script>
@@ -17,7 +21,6 @@ const handleClick = (e: MouseEvent) => {
   <a
     :href="props.href"
     :target="props.target"
-    class="html-a"
     :class="{ 'html-a--disabled': props.disabled }"
     @click="handleClick"
   >
