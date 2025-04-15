@@ -9,7 +9,9 @@ const printA = () => {
 </script>
 
 <template>
-  <A ref="a" @click="printA" href="https://www.baidu.com" target="_blank">click me</A>
+  <A ref="a" @click="printA" href="https://www.baidu.com" target="_blank" type="phone">
+    click me
+  </A>
 </template>
 
 <style scoped></style>
