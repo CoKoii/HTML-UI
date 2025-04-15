@@ -1,12 +1,10 @@
 <script setup lang="ts">
 import type { AProps } from './types'
+import { ref } from 'vue'
 const props = withDefaults(defineProps<AProps>(), {
   target: '_self',
   type: 'link',
   href: '#',
-})
-defineOptions({
-  name: 'A_',
 })
 const handleClick = (e: MouseEvent) => {
   if (props.disabled) {
@@ -15,10 +13,18 @@ const handleClick = (e: MouseEvent) => {
     return
   }
 }
+const aRef = ref<HTMLAnchorElement>()
+defineExpose({
+  ref: aRef,
+})
+defineOptions({
+  name: 'A_',
+})
 </script>
 
 <template>
   <a
+    ref="aRef"
     :href="props.href"
     :target="props.target"
     :class="{ 'html-a--disabled': props.disabled }"
