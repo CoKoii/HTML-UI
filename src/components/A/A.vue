@@ -27,12 +27,16 @@ const iconName = computed(() => {
 })
 const aRef = ref<HTMLAnchorElement>()
 const href = computed(() => {
-  if (props.type === 'link') {
-    return props.href
-  } else if (props.type === 'phone') {
-    return `tel:${props.href}`
-  } else if (props.type === 'email') {
-    return `mailto:${props.href}`
+  if (props.download === false) {
+    if (props.type === 'link') {
+      return props.href
+    } else if (props.type === 'phone') {
+      return `tel:${props.href}`
+    } else if (props.type === 'email') {
+      return `mailto:${props.href}`
+    } else {
+      return props.href
+    }
   } else {
     return props.href
   }
@@ -52,6 +56,7 @@ defineOptions({
     :target="props.target"
     class="html-a"
     :class="{ 'html-a--disabled': props.disabled }"
+    :download="props.download"
     :rel="props.target === '_blank' ? 'noopener noreferrer' : undefined"
     @click="handleClick"
   >

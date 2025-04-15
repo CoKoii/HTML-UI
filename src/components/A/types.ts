@@ -4,6 +4,7 @@ export type AProps = {
   target?: '_blank' | '_self'
   disabled?: boolean
   icon?: string | boolean
+  download?: boolean | string
 }
 export interface AInstance {
   ref: HTMLAnchorElement
